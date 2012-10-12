@@ -17,13 +17,10 @@ class CNeuron : public CSmartArray<CPixel> ,public CCoordinates{
 public:
 
 	CNeuron(){};
-<<<<<<< HEAD
-=======
 	CNeuron(const CNeuron& N):CSmartArray<CPixel>(N),CCoordinates(N)
 	{
 
 	}
->>>>>>> added function for teaching web
 	CNeuron(int NeuronSize,int x,int y):CSmartArray<CPixel>(NeuronSize,NeuronSize),CCoordinates(x,y) {}
 	virtual ~CNeuron() {}
 
@@ -34,8 +31,6 @@ public:
 		return alpha*exp( -pow( distance(N1,N2) ,2.0)/(10*sqrt((double)NeuronsNumber/(double)IterNum)) );
 	}
 
-<<<<<<< HEAD
-=======
 
 
 	void operator=(const CNeuron & N)
@@ -59,7 +54,6 @@ public:
 		return result;
 	}
 
->>>>>>> added function for teaching web
 	static const int UNUSED_COORD=-1;
 };
 

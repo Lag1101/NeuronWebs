@@ -27,9 +27,6 @@ public:
 	CSmartArray(int i_width,int i_height):width(0),height(0),Array(0){
 		resize(i_width,i_height);
 	}
-<<<<<<< HEAD
-	explicit CSmartArray(const CSmartArray<T> & S):width(0),height(0),Array(0)
-=======
 	CSmartArray(const CSmartArray<T> & S):width(0),height(0),Array(0)
 	{
 		if(S.Array)
@@ -45,7 +42,6 @@ public:
 			throw std::string("Array was initialize");
 	}
 	CSmartArray(CSmartArray<T> & S):width(0),height(0),Array(0)
->>>>>>> added function for teaching web
 	{
 		if(S.Array)
 		{
@@ -64,11 +60,7 @@ public:
 	}
 
 
-<<<<<<< HEAD
-	void operator=(const CSmartArray<T> & S)
-=======
 	virtual void operator=(const CSmartArray<T> & S)
->>>>>>> added function for teaching web
 	{
 		*this=CSmartArray<T>(S);
 	}
@@ -120,11 +112,7 @@ public:
 		return at(x/width,x%width);
 	}
 
-<<<<<<< HEAD
-	CSmartArray<T> operator+(const CSmartArray<T> & S)
-=======
 	virtual CSmartArray<T> operator+(const CSmartArray<T> & S)
->>>>>>> added function for teaching web
 	{
 		CSmartArray<T> res(*this);
 
@@ -134,11 +122,7 @@ public:
 		}
 		return res;
 	}
-<<<<<<< HEAD
-	CSmartArray<T> operator-(const CSmartArray<T> & S)
-=======
 	virtual CSmartArray<T> operator-(const CSmartArray<T> & S)
->>>>>>> added function for teaching web
 	{
 		CSmartArray<T> res(*this);
 

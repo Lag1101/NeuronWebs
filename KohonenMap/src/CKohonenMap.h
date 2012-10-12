@@ -39,11 +39,7 @@ public:
 			}
 	}
 
-<<<<<<< HEAD
-	void Teaching(const CPixel * const img,int length,int width,int height)
-=======
 	void Teaching(const CPixel * const img,int length,int width,int height,int iter_num)
->>>>>>> added function for teaching web
 	{
 		int HalfSize=m_NeuronSize/2;
 
@@ -56,12 +52,7 @@ public:
 
 		web_t::iterator MostCloseNeuron = FindMostCloseNeouronToThisOne(&Neuron);
 
-<<<<<<< HEAD
-
-		//FillNeuronFromPointOfImage()
-=======
 		MoveNeuronsToThisOne(MostCloseNeuron,iter_num);
->>>>>>> added function for teaching web
 
 	}
 
@@ -107,15 +98,10 @@ private:
 			if(it!=Neuron)
 			{
 				double temp=NeighbourMesure(*it,*Neuron,iternum,m_NeuronWeb.Size());
-<<<<<<< HEAD
-				//CSmartArray<int> NeuronTemp=*Neuron-*it;
-				//*it=*it+NeuronTemp;
-=======
 
 				CNeuron NeuronTemp( ( (*Neuron)-(*it) )*temp );
 
 				*it=*it+NeuronTemp;
->>>>>>> added function for teaching web
 			}
 		}
 	}

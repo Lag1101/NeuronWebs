@@ -15,8 +15,6 @@ int main() {
 
 	CKohonenMap Web(20,11);
 
-<<<<<<< HEAD
-=======
 	int w(100),h(100);
 	CPixel * img=new CPixel[w*h];
 
@@ -26,6 +24,5 @@ int main() {
 
 	delete [] img;
 
->>>>>>> added function for teaching web
 	return 0;
 }
