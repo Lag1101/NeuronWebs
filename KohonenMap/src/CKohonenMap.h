@@ -15,8 +15,12 @@
 class CKohonenMap {
 	typedef CSmartArray<CNeuron> web_t;
 public:
+	CKohonenMap():m_NeuronSize(0)
+	{
+	}
 	CKohonenMap(int WebSize,int neuron_size) : m_NeuronWeb(web_t(WebSize,WebSize)),m_NeuronSize(neuron_size)
 	{
+
 		for(int x=0;x<m_NeuronWeb.Width();x++)
 			for(int y=0;y<m_NeuronWeb.Height();y++)
 				m_NeuronWeb.at(y,x)=CNeuron(m_NeuronSize,x,y);
@@ -54,6 +58,16 @@ public:
 
 		MoveNeuronsToThisOne(MostCloseNeuron,iter_num);
 
+	}
+	void Restore(CPixel * img,int length,int x,int y)
+	{
+		CNeuron Neuron(m_NeuronSize,CNeuron::UNUSED_COORD,CNeuron::UNUSED_COORD);
+
+		FillNeuronFromPointOfImage(Neuron,img,length,x,y);
+
+		web_t::iterator MostCloseNeuron = FindMostCloseNeouronToThisOne(&Neuron);
+
+		img[y*length+x]=(*MostCloseNeuron).at(m_NeuronSize/2,m_NeuronSize/2);
 	}
 
 private:
@@ -98,10 +112,8 @@ private:
 			if(it!=Neuron)
 			{
 				double temp=NeighbourMesure(*it,*Neuron,iternum,m_NeuronWeb.Size());
-
-				CNeuron NeuronTemp( ( (*Neuron)-(*it) )*temp );
-
-				*it=*it+NeuronTemp;
+				CNeuron NeuronTemp=CNeuron( (*Neuron-*it)*temp );
+				NeuronTemp=NeuronTemp-(*it);
 			}
 		}
 	}

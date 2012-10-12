@@ -30,27 +30,23 @@ public:
 
 		return alpha*exp( -pow( distance(N1,N2) ,2.0)/(10*sqrt((double)NeuronsNumber/(double)IterNum)) );
 	}
-
-
-
-	void operator=(const CNeuron & N)
-	{
-		CSmartArray<CPixel>::operator =(N);
-	}
 	CNeuron operator+(const CNeuron & N) const
 	{
-		CNeuron result=(*this)+N;
+		CNeuron result(*this);
+		CSmartArray<CPixel>::operator +(N);
 		return result;
 	}
 	CNeuron operator-(const CNeuron & N) const
 	{
-		CNeuron result=(*this)-N;
+		CNeuron result(*this);
+		CSmartArray<CPixel>::operator -(N);
 		return result;
 	}
 	template<typename R>
 	CNeuron operator*(const R & Value) const
 	{
-		CNeuron result=(*this)*Value;
+		CNeuron result(*this);
+		CSmartArray<CPixel>::operator *(Value);
 		return result;
 	}
 

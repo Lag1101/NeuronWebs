@@ -12,6 +12,7 @@
 #include "math.h"
 #include <string>
 #include <limits>
+#include <iostream>
 
 template<class T>
 class CSmartArray {
@@ -29,31 +30,7 @@ public:
 	}
 	CSmartArray(const CSmartArray<T> & S):width(0),height(0),Array(0)
 	{
-		if(S.Array)
-		{
-			this->resize(S.width,S.height);
-			if(std::numeric_limits<T>::is_exact)
-				memcpy(this->Array,S.Array,width*height*sizeof(T));
-			else
-				for(int x=0;x<Size();x++)
-					Array[x]=T();
-		}
-		else
-			throw std::string("Array was initialize");
-	}
-	CSmartArray(CSmartArray<T> & S):width(0),height(0),Array(0)
-	{
-		if(S.Array)
-		{
-			this->resize(S.width,S.height);
-			if(std::numeric_limits<T>::is_exact)
-				memcpy(this->Array,S.Array,width*height*sizeof(T));
-			else
-				for(int x=0;x<Size();x++)
-					Array[x]=T();
-		}
-		else
-			throw std::string("Array was initialize");
+		*this=S;
 	}
 	virtual ~CSmartArray(){
 		delete [] Array;
@@ -62,7 +39,17 @@ public:
 
 	virtual void operator=(const CSmartArray<T> & S)
 	{
-		*this=CSmartArray<T>(S);
+		if(S.Array)
+		{
+			this->resize(S.width,S.height);
+			if(std::numeric_limits<T>::is_exact)
+				memcpy(this->Array,S.Array,width*height*sizeof(T));
+			else
+				for(int x=0;x<Size();x++)
+					Array[x]=T();
+		}
+		else
+			throw std::string("Array was initialize");
 	}
 	void resize(int i_width,int i_height)
 	{
@@ -112,7 +99,7 @@ public:
 		return at(x/width,x%width);
 	}
 
-	virtual CSmartArray<T> operator+(const CSmartArray<T> & S)
+	virtual CSmartArray<T> operator+(const CSmartArray<T> & S) const
 	{
 		CSmartArray<T> res(*this);
 
@@ -122,7 +109,7 @@ public:
 		}
 		return res;
 	}
-	virtual CSmartArray<T> operator-(const CSmartArray<T> & S)
+	virtual CSmartArray<T> operator-(const CSmartArray<T> & S)const
 	{
 		CSmartArray<T> res(*this);
 
@@ -133,7 +120,7 @@ public:
 		return res;
 	}
 	template<class R>
-	CSmartArray operator*(R Value)
+	CSmartArray operator*(R Value) const
 	{
 		CSmartArray res(*this);
 
